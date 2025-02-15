@@ -1,18 +1,18 @@
 struct User {
-    active: bool,
-    username: String,
+    _active: bool,
+    _username: String,
     email: String,
-    sign_in_count: u64,
+    _sign_in_count: u64,
 }
 struct Color(i32, i32, i32);
 struct Point(i32, i32, i32);
 struct AlwaysEqual;
 fn main() {
     let mut user1 = User {
-        active: true,
-        username: String::from("someusername123"),
+        _active: true,
+        _username: String::from("someusername123"),
         email: String::from("someone@example.com"),
-        sign_in_count: 1,
+        _sign_in_count: 1,
     };
     user1.email = String::from("anotheremail@example.com");
     let _user2 = User {
@@ -27,13 +27,18 @@ fn main() {
     let _black = Color(0, 0, 0);
     let _origin = Point(0, 0, 0);
     let _subject = AlwaysEqual;
+
+    println!(
+        "{},{},{},{},{},{}",
+        _origin.0, _black.0, _origin.1, _black.1, _origin.2, _black.2
+    );
 }
 
-fn build_user(email: String, username: String) -> User {
+fn build_user(email: String, _username: String) -> User {
     User {
-        active: true,
-        username,
+        _active: true,
+        _username,
         email,
-        sign_in_count: 1,
+        _sign_in_count: 1,
     }
 }
