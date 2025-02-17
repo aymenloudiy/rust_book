@@ -1,15 +1,15 @@
 mod front_of_house {
     mod hosting {
-        fn add_to_waitlist() {}
+        fn _add_to_waitlist() {}
 
-        fn seat_at_table() {}
+        fn _seat_at_table() {}
     }
 
     mod serving {
-        fn take_order() {}
+        fn _take_order() {}
 
-        fn serve_order() {}
+        fn _serve_order() {}
 
-        fn take_payment() {}
+        fn _take_payment() {}
     }
 }
