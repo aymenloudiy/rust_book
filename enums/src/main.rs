@@ -7,7 +7,7 @@ fn main() {
     let _six = IpAddrKind::V6;
     route(IpAddrKind::V4);
     route(IpAddrKind::V6);
-    let m = Message::Write(String::from("hello"));
+    let m = Message::Write(());
     m.call();
 }
 fn route(_ip_kind: IpAddrKind) {}
@@ -63,7 +63,7 @@ fn _ex3() {
 enum Message {
     _Quit,
     _Move { x: i32, y: i32 },
-    Write(String),
+    Write(()),
     _ChangeColor(i32, i32, i32),
 }
 impl Message {
