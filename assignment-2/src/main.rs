@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, io};
 
 fn main() {
     let list_test = vec![4, 3, 4, 2, 1, 0];
@@ -9,7 +9,11 @@ fn main() {
     println!("{mode}");
     let string_test = String::from("Hello World");
     let pigged = pig_latin(string_test);
-    println!("{pigged}")
+    println!("{pigged}");
+    let mut interface_map: HashMap<String, Vec<String>> = HashMap::new();
+    interface_map.insert(String::from("Engineering"), vec![String::from("Aymen")]);
+    interface_map = interface(interface_map);
+    println!("{interface_map:?}")
 }
 fn sort_list(list: Vec<i32>) -> Vec<i32> {
     let mut answer: Vec<i32> = list;
@@ -47,4 +51,30 @@ fn pig_latin(s: String) -> String {
         answer = format!("{answer} {pig}");
     }
     answer.trim().to_owned()
+}
+fn interface(mut company: HashMap<String, Vec<String>>) -> HashMap<String, Vec<String>> {
+    let mut instruction: String = String::new();
+    io::stdin()
+        .read_line(&mut instruction)
+        .expect("Failed to read line");
+
+    let instruction_vec: Vec<&str> = instruction.split_whitespace().collect();
+    if instruction_vec.len() != 4 {
+        println!("The instruction should be in the format of : add x to y, if there is a name and surname use a hyphen to separate them");
+        return company;
+    }
+    let department = instruction_vec[3].to_string();
+    let name = instruction_vec[1].to_string();
+    match instruction_vec[0].to_lowercase().as_str() {
+        "add" => {
+            println!("Added {},to {}", department, name);
+            let people = company.entry(department).or_insert(vec![]);
+            people.push(name);
+            people.sort();
+        }
+        _ => {
+            println!("The only possible action is 'add' , the format should be 'Add x to y' ");
+        }
+    };
+    company
 }
