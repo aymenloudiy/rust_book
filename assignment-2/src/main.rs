@@ -7,6 +7,9 @@ fn main() {
     let mode = get_mode(&sorted_list);
     println!("{median}");
     println!("{mode}");
+    let string_test = String::from("Hello World");
+    let pigged = pig_latin(string_test);
+    println!("{pigged}")
 }
 fn sort_list(list: Vec<i32>) -> Vec<i32> {
     let mut answer: Vec<i32> = list;
@@ -30,4 +33,18 @@ fn get_mode(list: &Vec<i32>) -> i32 {
     }
     final_answer
 }
-fn pig_latin(s: String) -> String {}
+fn pig_latin(s: String) -> String {
+    let mut answer = String::from("");
+    let mut pig: String;
+    let vowels = vec!["a", "o", "u", "i", "e"];
+    for word in s.split_whitespace() {
+        let (first, last) = word.split_at(1);
+        if vowels.contains(&first) {
+            pig = format!("{last}-{first}hay");
+        } else {
+            pig = format!("{last}-{first}ay");
+        }
+        answer = format!("{answer} {pig}");
+    }
+    answer.trim().to_owned()
+}
