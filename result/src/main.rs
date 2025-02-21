@@ -1,11 +1,10 @@
-use std::error::Error;
 use std::fs::File;
 use std::io::{self, ErrorKind, Read};
 
 fn main() {
     let greeting_file_result = File::open("hello.txt");
 
-    let greeting_file = match greeting_file_result {
+    let _greeting_file = match greeting_file_result {
         Ok(file) => file,
         Err(error) => match error.kind() {
             ErrorKind::NotFound => match File::create("hello.txt") {
@@ -18,8 +17,8 @@ fn main() {
         },
     };
 }
-fn alternative_to_match() {
-    let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
+fn _alternative_to_match() {
+    let _greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
         if error.kind() == ErrorKind::NotFound {
             File::create("hello.txt").unwrap_or_else(|error| {
                 panic!("Problem creating the file: {error:?}");
@@ -29,13 +28,13 @@ fn alternative_to_match() {
         }
     });
 }
-fn expect_unwrap() {
-    let greeting_file = File::open("hello.txt").unwrap();
+fn _expect_unwrap() {
+    let _greeting_file = File::open("hello.txt").unwrap();
 
-    let greeting_file =
+    let _greeting_file =
         File::open("hello.txt").expect("hello.txt should be included in this project");
 }
-fn error_propagation() -> Result<String, io::Error> {
+fn _error_propagation() -> Result<String, io::Error> {
     let username_file_result = File::open("hello.txt");
 
     let mut username_file = match username_file_result {
@@ -50,7 +49,7 @@ fn error_propagation() -> Result<String, io::Error> {
         Err(e) => Err(e),
     }
 }
-fn question_operator() -> Result<String, io::Error> {
+fn _question_operator() -> Result<String, io::Error> {
     let mut username_file = File::open("hello.txt")?;
     let mut username = String::new();
     username_file.read_to_string(&mut username)?;
