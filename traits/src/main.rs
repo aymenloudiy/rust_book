@@ -51,6 +51,8 @@ fn main() {
     };
 
     println!("1 new tweet: {}", tweet.summarize());
+    let pair = Pair::new(2, 2);
+    pair.cmp_display();
 }
 pub fn notify(item: &impl Summary) {
     println!("Breaking news! {}", item.summarize());
