@@ -33,15 +33,23 @@ fn iterate_vector_change() {
     }
 }
 fn enum_vector() {
-    //used to store mutliple types in a vector
     enum Spreadsheet {
         Int(i32),
         Float(f64),
         Text(String),
     }
-    let _v: Vec<Spreadsheet> = vec![
+
+    let v: Vec<Spreadsheet> = vec![
         Spreadsheet::Int(5),
         Spreadsheet::Float(0.5),
         Spreadsheet::Text(String::from("Hello")),
     ];
+
+    for item in &v {
+        match item {
+            Spreadsheet::Int(value) => println!("Integer: {value}"),
+            Spreadsheet::Float(value) => println!("Float: {value}"),
+            Spreadsheet::Text(value) => println!("Text: {value}"),
+        }
+    }
 }
