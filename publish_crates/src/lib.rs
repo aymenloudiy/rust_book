@@ -23,7 +23,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2);
+        let result = add_one(2);
         assert_eq!(result, 3);
     }
 }
