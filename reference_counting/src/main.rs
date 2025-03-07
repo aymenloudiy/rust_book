@@ -1,4 +1,5 @@
 #[derive(Debug)]
+#[allow(dead_code)]
 enum List {
     Cons(Rc<RefCell<i32>>, Rc<List>),
     Nil,
