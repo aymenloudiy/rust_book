@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use gui::{Button, Draw, Screen};
 
 struct SelectBox {
